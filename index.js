@@ -14,13 +14,25 @@ const init = async () => {
         path: '/',
         handler: (request, h) => {
 
-            return 'Im Jose';
+           return `I'm Jose! ${JSON.stringify(request.query)}`; 
         }
     });
+
+    server.route({
+        method: 'POST',
+        path: '/',
+        handler: (request,h) => {
+           const payload = request.payload;
+           console.log('Recieved payload!', payload);
+           
+           return "Post Arrived!"
+        }
+    })
 
     await server.start();
     console.log('Server running on %s', server.info.uri);
 };
+
 
 process.on('unhandledRejection', (err) => {
 
@@ -28,4 +40,13 @@ process.on('unhandledRejection', (err) => {
     process.exit(1);
 });
 
+
+//http://localhost:3000
+
+
+
+
+
+
 init();
+
