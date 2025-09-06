@@ -23,7 +23,7 @@ const init = async () => {
         path: '/',
         handler: (request,h) => {
            const payload = request.payload;
-           console.log('Recieved payload!', payload);
+           return('Recieved payload!', payload);
            
            return "Post Arrived!"
         }
