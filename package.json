@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/Jacrivas/rest-api-testing#readme",
   "dependencies": {
-    "@hapi/hapi": "^21.4.3"
+    "@hapi/hapi": "^21.4.3",
+    "@hapi/joi": "^17.1.1",
+    "joi": "^18.0.1"
   }
 }

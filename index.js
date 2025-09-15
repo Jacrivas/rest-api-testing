@@ -1,6 +1,20 @@
 'use strict';
 
 const Hapi = require('@hapi/hapi');
+const joi = require('joi');
+// ^ update me if you want me to use the older one or If I am fine to use this one
+const path = require('path');
+const fs = require('fs');
+
+
+const routes = []
+const routesPath = path.join(__dirname, "routes")
+
+fs.readdirSync(routesPath).forEach(x => routes.push(...require(path.join(routesPath, x))));
+
+// ^ this was giving an issue for a while
+
+
 
 const init = async () => {
 
@@ -9,25 +23,7 @@ const init = async () => {
         host: 'localhost'
     });
 
-    server.route({
-        method: 'GET',
-        path: '/',
-        handler: (request, h) => {
-
-           return `I'm Jose! ${JSON.stringify(request.query)}`; 
-        }
-    });
-
-    server.route({
-        method: 'POST',
-        path: '/',
-        handler: (request,h) => {
-           const payload = request.payload;
-           return('Recieved payload!', payload);
-           
-           return "Post Arrived!"
-        }
-    })
+    server.route(routes)
 
     await server.start();
     console.log('Server running on %s', server.info.uri);
@@ -40,13 +36,9 @@ process.on('unhandledRejection', (err) => {
     process.exit(1);
 });
 
-
-//http://localhost:3000
-
-
-
-
-
-
 init();
+
+
+
+
 
