@@ -6,15 +6,23 @@ module.exports = [{
     method: 'GET',
     path: '/courses/{subject}',
     handler: (request, h) => {
-    return request.query.subject;
+    return request.query.subject|| 'No info was Given';
     }
 },
 {
     method: 'GET',
     path: '/courses/credits/{number}',
     handler: (request, h) => {
-    return request.query.number
-}
+    return request.query.number|| 'No info was Given'
+    }
+},
+
+{
+    method: 'GET',
+    path: '/',
+    handler: (request, h) => {
+        return request.query.subject || 'No info was Given';
+    }
 }]
 
 /*
